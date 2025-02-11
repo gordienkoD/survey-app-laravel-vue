@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function missingSurveys(): Response|RedirectResponse
     {
-        if (!Auth::user() || Auth::user()->role !== 'admin') {
+        if (!Auth::user() || !Auth::user()->hasRole('admin')) {
             return redirect('/dashboard');
         }
 
