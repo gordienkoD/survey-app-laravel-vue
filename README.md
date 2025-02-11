@@ -21,8 +21,8 @@ Authentication is handled by Breeze, access control is managed using **Spatie Pe
 ### 1️⃣ Install Dependencies
 
 ```bash
-git clone https://github.com/YOUR-REPOSITORY.git
-cd YOUR-REPOSITORY
+git clone https://github.com/gordienkoD/survey-app-laravel-vue.git
+cd survey-app-laravel-vue
 composer install
 npm install
 ```
