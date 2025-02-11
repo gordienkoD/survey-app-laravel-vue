@@ -2,8 +2,9 @@
 
 ## 📌 Project Description
 
-This project is built using **Laravel** with **Laravel Breeze (Vue + Inertia)**.  
-Authentication is handled by Breeze, access control is managed using **Spatie Permissions**, and the development environment is powered by **Laravel Sail (Docker + MySQL)**.
+This project is built using **Laravel** with **Laravel Breeze (Vue + Inertia)**.
+Authentication is handled by Breeze, **Google authentication is integrated via Laravel Socialite**, and access control is managed using **Spatie Permissions**.
+The development environment is powered by **Laravel Sail (Docker + MySQL)**.
 
 ---
 
@@ -11,6 +12,7 @@ Authentication is handled by Breeze, access control is managed using **Spatie Pe
 
 -   **Laravel** – PHP framework
 -   **Laravel Breeze (Vue + Inertia)** – Authentication and Vue components
+-   **Laravel Socialite** – OAuth authentication (Google)
 -   **Laravel Sail** – Containerized environment (Docker + MySQL)
 -   **Spatie Permissions** – Role and permission management
 
@@ -64,8 +66,32 @@ npm run dev
 
 -   Laravel Breeze provides authentication with Vue + Inertia.
 -   Spatie Permissions is used for role-based access control.
+-   Google Authentication is implemented using Laravel Socialite.
 
 ---
+
+## 5️⃣ Configure Google OAuth Credentials
+
+-   Go to Google Cloud Console and create a new project.
+-   Enable OAuth consent screen (choose "External" if you're testing).
+-   Go to Credentials → Create Credentials → OAuth Client ID.
+-   Select "Web application" and set the following:
+-   Authorized redirect URIs:
+
+### Generate sail share URL
+
+```bash
+    ./vendor/bin/sail share
+```
+
+-   After creation, you'll receive Client ID and Client Secret.
+-   Open .env and add:
+
+```
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+GOOGLE_REDIRECT_URI=http://sail-share-generate-URL/auth/google/callback
+```
 
 ## 📌 Available Commands
 
@@ -81,13 +107,9 @@ php artisan migrate
 php artisan db:seed
 ```
 
-
-
 ### Start the Development Server
 
 ```bash
 php artisan serve
 npm run dev
 ```
-
-

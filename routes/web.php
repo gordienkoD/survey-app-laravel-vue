@@ -3,6 +3,7 @@
 use App\Http\Controllers\{
     AdminController,
     DashboardController,
+    GoogleAuthController,
     ProfileController,
     SurveyController
 };
@@ -18,6 +19,9 @@ Route::get('/', function () {
         'phpVersion'    => PHP_VERSION,
     ]);
 });
+
+Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
